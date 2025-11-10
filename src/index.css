@@ -1,0 +1,474 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+@import 'react-big-calendar/lib/css/react-big-calendar.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+    * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  :root {
+    /* Minimalist Light Mode - Clean & Modern */
+    --background: 0 0% 98%;
+    --foreground: 0 0% 10%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 10%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 10%;
+
+    /* Primary: Refined Orange #fd8c40 */
+    --primary: 22 98% 62%;
+    --primary-foreground: 0 0% 100%;
+    --primary-light: 22 95% 92%;
+    --primary-glow: 22 98% 70%;
+
+    /* Secondary: Warm Orange */
+    --secondary: 19 76% 54%;
+    --secondary-foreground: 0 0% 100%;
+    --secondary-light: 19 60% 94%;
+
+    --muted: 0 0% 95%;
+    --muted-foreground: 0 0% 45%;
+
+    /* Accent: Subtle Terracotta */
+    --accent: 12 50% 50%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 0 0% 90%;
+    --input: 0 0% 92%;
+    --ring: 22 98% 62%;
+
+    --radius: 0.75rem;
+
+    /* Status Colors */
+    --open-status: 142 76% 36%;
+    --closed-status: 0 0% 60%;
+    --trending: 19 76% 54%;
+    --verified: 217 91% 60%;
+    
+    /* Minimalist Gradients */
+    --gradient-hero: linear-gradient(135deg, hsl(22 98% 62% / 0.05), hsl(19 76% 54% / 0.03));
+    --gradient-warm: linear-gradient(135deg, hsl(0 0% 100%), hsl(22 95% 97%));
+    --gradient-cool: linear-gradient(135deg, hsl(0 0% 98%), hsl(0 0% 100%));
+    --gradient-card: linear-gradient(180deg, transparent 0%, hsl(0 0% 0% / 0.02) 100%);
+    --gradient-shimmer: linear-gradient(90deg, transparent, hsl(0 0% 100% / 0.6), transparent);
+    --gradient-overlay: linear-gradient(180deg, hsl(0 0% 100% / 0) 0%, hsl(0 0% 0% / 0.4) 100%);
+    
+    /* Soft Shadows - Minimalist */
+    --shadow-xs: 0 1px 2px hsl(0 0% 0% / 0.02);
+    --shadow-sm: 0 1px 3px hsl(0 0% 0% / 0.03);
+    --shadow-md: 0 2px 8px hsl(0 0% 0% / 0.04);
+    --shadow-lg: 0 4px 16px hsl(0 0% 0% / 0.06);
+    --shadow-xl: 0 8px 32px hsl(0 0% 0% / 0.08);
+    --shadow-card: 0 1px 3px hsl(0 0% 0% / 0.02);
+    --shadow-card-hover: 0 4px 12px hsl(0 0% 0% / 0.06);
+    --shadow-glow: 0 0 24px hsl(22 98% 62% / 0.15);
+    
+    /* Transitions */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-fast: all 0.15s ease;
+    --transition-bounce: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  }
+
+  .dark {
+    /* Meukat Dark Mode - Enhanced Contrast */
+    --background: 0 0% 17%;
+    --foreground: 0 0% 98%;
+
+    --card: 0 0% 18%;
+    --card-foreground: 0 0% 98%;
+
+    --popover: 0 0% 18%;
+    --popover-foreground: 0 0% 98%;
+
+    --primary: 22 98% 65%;
+    --primary-foreground: 0 0% 100%;
+    --primary-light: 22 98% 30%;
+    --primary-glow: 22 98% 70%;
+
+    --secondary: 19 76% 58%;
+    --secondary-foreground: 0 0% 100%;
+    --secondary-light: 19 76% 25%;
+
+    --muted: 0 0% 22%;
+    --muted-foreground: 0 0% 65%;
+
+    --accent: 12 61% 50%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 4 55% 40%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 0 0% 25%;
+    --input: 0 0% 25%;
+    --ring: 22 98% 65%;
+    
+    /* Dark mode specific */
+    --foreground-secondary: 0 0% 80%;
+    --foreground-muted: 0 0% 50%;
+    --open-status: 22 98% 65%;
+    --closed-status: 0 0% 50%;
+    --trending: 19 76% 60%;
+    --verified: 22 98% 65%;
+    
+    --shadow-card: 0 2px 8px hsl(0 0% 0% / 0.4);
+    --shadow-card-hover: 0 6px 20px hsl(0 0% 0% / 0.5);
+    --shadow-glow: 0 0 30px hsl(22 98% 62% / 0.2);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+    transition: background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                border-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  /* Exclude animations from elements that should be instant */
+  .no-transition,
+  .no-transition *,
+  [data-no-transition],
+  [data-no-transition] * {
+    transition: none !important;
+  }
+
+  html,
+  body {
+    @apply bg-background text-foreground;
+    overflow-x: hidden;
+    max-width: 100vw;
+  }
+  
+  /* Modern view transition API for smooth theme switching */
+  @media (prefers-reduced-motion: no-preference) {
+    ::view-transition-old(root),
+    ::view-transition-new(root) {
+      animation-duration: 0.3s;
+    }
+  }
+  
+  /* Custom Scrollbar - Tipis, Hover Membesar, Ikuti Tema */
+  ::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  :root {
+  padding-top: env(safe-area-inset-top);
+  padding-bottom: env(safe-area-inset-bottom);
+}
+  
+  ::-webkit-scrollbar-thumb {
+    background: hsl(var(--border));
+    border-radius: 4px;
+    transition: background 0.3s ease, width 0.3s ease;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--primary) / 0.6);
+  }
+  
+  .dark ::-webkit-scrollbar-thumb {
+    background: hsl(var(--border));
+  }
+  
+  .dark ::-webkit-scrollbar-thumb:hover {
+    background: hsl(22 98% 62%);
+  }
+  
+  /* Firefox */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: hsl(var(--border)) transparent;
+  }
+  
+  .dark * {
+    scrollbar-color: hsl(var(--border)) transparent;
+  }
+  
+  /* Hover expand scrollbar width */
+  *:hover::-webkit-scrollbar {
+    width: 8px;
+  }
+}
+
+@layer utilities {
+  /* Touch Target Utilities - Minimum 44x44px for accessibility */
+  .touch-target {
+    @apply min-h-[44px] min-w-[44px];
+  }
+  
+  .touch-target-large {
+    @apply min-h-[56px] min-w-[56px];
+  }
+
+  /* Spacing Utilities - Consistent 4px grid */
+  .space-section {
+    @apply py-6 md:py-8 lg:py-12;
+  }
+  
+  .space-container {
+    @apply px-4 sm:px-6 lg:px-8;
+  }
+
+  /* Image Optimization */
+  .img-optimized {
+    @apply object-cover will-change-transform;
+  }
+  
+  .img-fade-in {
+    animation: fade-in 0.3s ease-in;
+  }
+
+  /* Focus Visible - Better keyboard navigation */
+  .focus-ring {
+    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background;
+  }
+
+  /* Card Hover Effects */
+  .card-interactive {
+    @apply transition-all duration-200 hover:shadow-card-hover hover:-translate-y-0.5;
+  }
+  
+  /* Safe Area for iOS */
+  .safe-area-bottom {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+  
+  .safe-area-top {
+    padding-top: env(safe-area-inset-top);
+  }
+
+  /* TikTok-style like animation */
+  @keyframes like-bounce {
+    0% {
+      transform: scale(0);
+      opacity: 0;
+    }
+    50% {
+      transform: scale(1.2);
+      opacity: 1;
+    }
+    100% {
+      transform: scale(0);
+      opacity: 0;
+    }
+  }
+  
+  .animate-like-bounce {
+    animation: like-bounce 1s ease-out;
+  }
+
+  /* Slow bounce for empty state */
+  @keyframes bounce-slow {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+  
+  .animate-bounce-slow {
+    animation: bounce-slow 2s ease-in-out infinite;
+  }
+
+  /* Onboarding animations */
+  @keyframes slide-in-right {
+    from {
+      transform: translateX(100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes slide-in-left {
+    from {
+      transform: translateX(-100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0) rotate(0deg);
+    }
+    50% {
+      transform: translateY(-20px) rotate(3deg);
+    }
+  }
+
+  @keyframes pulse-glow {
+    0%, 100% {
+      box-shadow: 0 0 20px hsl(var(--secondary) / 0.3);
+    }
+    50% {
+      box-shadow: 0 0 40px hsl(var(--secondary) / 0.6);
+    }
+  }
+
+  .animate-slide-in-right {
+    animation: slide-in-right 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .animate-slide-in-left {
+    animation: slide-in-left 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+
+  .animate-pulse-glow {
+    animation: pulse-glow 2s ease-in-out infinite;
+  }
+
+  /* Button press effect */
+  @keyframes button-press {
+    0% { transform: scale(1); }
+    50% { transform: scale(0.95); }
+    100% { transform: scale(1); }
+  }
+
+  .animate-button-press {
+    animation: button-press 0.2s ease;
+  }
+
+  /* Card entry animation */
+  @keyframes slide-up-fade {
+    from { 
+      opacity: 0;
+      transform: translateY(40px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-slide-up-fade {
+    animation: slide-up-fade 0.5s ease-out;
+  }
+
+  /* Badge pulse */
+  @keyframes badge-pulse {
+    0%, 100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+    50% {
+      transform: scale(1.1);
+      opacity: 0.8;
+    }
+  }
+
+  .animate-badge-pulse {
+    animation: badge-pulse 1.5s ease-in-out infinite;
+  }
+
+  /* Enhanced skeleton animations */
+  @keyframes shimmer {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(100%);
+    }
+  }
+
+  @keyframes skeleton-pulse {
+    0%, 100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.6;
+    }
+  }
+
+  @keyframes wave {
+    0% {
+      transform: translateX(-100%);
+    }
+    50% {
+      transform: translateX(100%);
+    }
+    100% {
+      transform: translateX(100%);
+    }
+  }
+
+  .skeleton-shimmer {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .skeleton-shimmer::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      hsl(var(--background) / 0.5),
+      transparent
+    );
+    animation: shimmer 2s infinite;
+  }
+
+  .skeleton-wave {
+    animation: skeleton-pulse 1.5s ease-in-out infinite;
+  }
+  
+  /* Ripple effect for theme toggle */
+  @keyframes ripple {
+    0% {
+      transform: scale(0);
+      opacity: 0.6;
+    }
+    100% {
+      transform: scale(4);
+      opacity: 0;
+    }
+  }
+
+  /* Slide up animation for PWA prompt */
+  @keyframes slide-up {
+    from {
+      transform: translateY(100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  .animate-slide-up {
+    animation: slide-up 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+}
